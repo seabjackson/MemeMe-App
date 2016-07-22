@@ -220,7 +220,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="eSz-Xx-6x2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="E7f-ad-B6c"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VwC-lg-VVQ">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="SSW-2l-SV9"/>
@@ -228,12 +227,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="qqY-1W-r7e" id="KnN-jp-QNI"/>
+                        <outlet property="tableView" destination="qqY-1W-r7e" id="Ttb-V3-Q6S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ch-RP-VKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="962"/>
+            <point key="canvasLocation" x="72" y="968"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1vi-sm-vGU">
@@ -316,20 +315,22 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="K8V-QS-og9" secondAttribute="trailing" constant="5" id="1TG-ad-PZo"/>
                                     <constraint firstItem="K8V-QS-og9" firstAttribute="top" secondItem="lRh-31-Sfo" secondAttribute="topMargin" constant="-3" id="2Yb-Vy-AXu"/>
                                     <constraint firstItem="osn-aG-Ney" firstAttribute="bottom" secondItem="lRh-31-Sfo" secondAttribute="bottomMargin" id="5KG-f6-nq4"/>
                                     <constraint firstItem="osn-aG-Ney" firstAttribute="centerX" secondItem="lRh-31-Sfo" secondAttribute="centerX" id="G34-R1-TN2"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="K8V-QS-og9" secondAttribute="bottom" constant="-3" id="Hn6-4p-9FX"/>
                                     <constraint firstItem="z4J-UE-CCz" firstAttribute="centerX" secondItem="lRh-31-Sfo" secondAttribute="centerX" id="Iag-yt-V64"/>
                                     <constraint firstItem="z4J-UE-CCz" firstAttribute="top" secondItem="lRh-31-Sfo" secondAttribute="topMargin" id="Kfq-ya-FUZ"/>
-                                    <constraint firstItem="K8V-QS-og9" firstAttribute="centerX" secondItem="lRh-31-Sfo" secondAttribute="centerX" id="KtQ-dC-1kC"/>
+                                    <constraint firstItem="K8V-QS-og9" firstAttribute="top" secondItem="lRh-31-Sfo" secondAttribute="top" constant="5" id="N0y-oU-qCQ"/>
                                     <constraint firstItem="osn-aG-Ney" firstAttribute="leading" secondItem="lRh-31-Sfo" secondAttribute="leadingMargin" id="SwL-tA-CEl"/>
                                     <constraint firstItem="K8V-QS-og9" firstAttribute="leading" secondItem="lRh-31-Sfo" secondAttribute="leadingMargin" constant="-3" id="XYi-cf-pED"/>
                                     <constraint firstItem="osn-aG-Ney" firstAttribute="trailing" secondItem="lRh-31-Sfo" secondAttribute="trailingMargin" id="a11-Rt-OV0"/>
                                     <constraint firstItem="z4J-UE-CCz" firstAttribute="trailing" secondItem="lRh-31-Sfo" secondAttribute="trailingMargin" id="aTH-7t-ZSr"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="K8V-QS-og9" secondAttribute="trailing" constant="-3" id="cB5-NH-dUv"/>
+                                    <constraint firstAttribute="bottom" secondItem="K8V-QS-og9" secondAttribute="bottom" constant="5" id="gHw-rT-cuF"/>
                                     <constraint firstItem="z4J-UE-CCz" firstAttribute="leading" secondItem="lRh-31-Sfo" secondAttribute="leadingMargin" id="jwE-NS-YfB"/>
-                                    <constraint firstItem="K8V-QS-og9" firstAttribute="centerY" secondItem="lRh-31-Sfo" secondAttribute="centerY" id="wvV-1w-WUz"/>
+                                    <constraint firstItem="K8V-QS-og9" firstAttribute="leading" secondItem="lRh-31-Sfo" secondAttribute="leading" constant="5" id="vR4-xB-dhl"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="bottomLabel" destination="osn-aG-Ney" id="wc4-kX-7BT"/>
@@ -343,13 +344,20 @@
                             <outlet property="delegate" destination="rfB-hI-sIR" id="hHy-hd-9r0"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Sent Memes" id="AR6-JT-VMq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="64l-LX-BBX">
+                            <connections>
+                                <action selector="deleteCells:" destination="rfB-hI-sIR" id="nYV-qF-MWZ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lW4-VX-6Jp">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="ra3-cY-JYE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flowLayout" destination="pCd-D9-trr" id="Uec-Hu-CGA"/>
                     </connections>

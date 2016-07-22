@@ -13,16 +13,23 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var memeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
-    
+
     
     // using the shared model
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = self.editButtonItem()
+    }
+    
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
         tableView.reloadData()
     }
     
@@ -44,8 +51,21 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         navigationController?.pushViewController(memeDetailVC, animated: true)
     }
     
-    func deleteRowsAtIndexPaths(_indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
-        
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
     }
-
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
+    
 }

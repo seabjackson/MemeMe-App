@@ -16,4 +16,6 @@ class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var topLabel: UILabel!
     
     @IBOutlet weak var bottomLabel: UILabel!
+
+
 }

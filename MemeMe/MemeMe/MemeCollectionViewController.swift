@@ -23,8 +23,21 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeFlowLayoutFor(view.frame.size)
-        
     }
+    
+    
+    @IBAction func deleteCells(sender: AnyObject) {
+        let indexpaths = collectionView?.indexPathsForSelectedItems()
+        
+        if let indexpaths = indexpaths {
+            for item in indexpaths {
+                let cell = collectionView!.cellForItemAtIndexPath((item as? NSIndexPath)!)
+                collectionView?.deleteItemsAtIndexPaths(indexpaths)
+            }
+        }
+    }
+    
+    
     
     func changeFlowLayoutFor(size: CGSize) {
         let spacing: CGFloat = 1.0
@@ -58,6 +71,7 @@ class MemeCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.item]
+        cell.imageView.contentMode = .ScaleAspectFit
         cell.imageView.image = meme.memedImage
 //        cell.topLabel.text = meme.topText
 //        cell.bottomLabel.text = meme.bottomText
@@ -70,6 +84,7 @@ class MemeCollectionViewController: UICollectionViewController {
         memeDetailVC.meme = memes[indexPath.item]
         navigationController?.pushViewController(memeDetailVC, animated: true)
     }
+    
 
     // MARK: UICollectionViewDelegate
 
