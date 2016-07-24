@@ -26,26 +26,16 @@ class MemeCollectionViewController: UICollectionViewController {
     }
     
     
-    @IBAction func deleteCells(sender: AnyObject) {
-        let indexpaths = collectionView?.indexPathsForSelectedItems()
-        
-        if let indexpaths = indexpaths {
-            for item in indexpaths {
-                let cell = collectionView!.cellForItemAtIndexPath((item as? NSIndexPath)!)
-                collectionView?.deleteItemsAtIndexPaths(indexpaths)
-            }
-        }
-    }
-    
-    
-    
     func changeFlowLayoutFor(size: CGSize) {
         let spacing: CGFloat = 1.0
         let dimension: CGFloat = size.width > size.height ? (size.width - (5 * spacing)) / 6.0 : (size.width - (2 * spacing)) / 3.0
         
-        flowLayout.minimumInteritemSpacing = spacing
-        flowLayout.minimumLineSpacing = spacing
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        if flowLayout != nil {
+            flowLayout.minimumInteritemSpacing = spacing
+            flowLayout.minimumLineSpacing = spacing
+            flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        }
+        
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -64,7 +54,6 @@ class MemeCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return memes.count
     }
 
@@ -81,6 +70,7 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let memeDetailVC = storyboard!.instantiateViewControllerWithIdentifier("MemeDetail") as! MemeDetailViewController
+        memeDetailVC.selectedMemeIndex = indexPath.item
         memeDetailVC.meme = memes[indexPath.item]
         navigationController?.pushViewController(memeDetailVC, animated: true)
     }

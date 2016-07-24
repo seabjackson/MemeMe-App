@@ -13,12 +13,22 @@ class MemeDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var meme: Meme!
+    var selectedMemeIndex: Int?
 
+    @IBOutlet weak var deleteButton: UIToolbar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func deleteMeme(sender: AnyObject) {
+        if let indexPath = selectedMemeIndex {
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(selectedMemeIndex!)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
